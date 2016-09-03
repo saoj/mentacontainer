@@ -18,11 +18,11 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  <scm>
-    <connection>scm:svn:svn://soliveirajr.com/mentacontainer/trunk</connection>
-    <developerConnection>scm:svn:svn://soliveirajr.com/mentacontainer/trunk</developerConnection>
-    <url>svn://soliveirajr.com/mentacontainer/trunk</url>
-  </scm>
+  	<scm>
+		<connection>scm:git:git@github.com:saoj/mentacontainer.git</connection>
+		<url>scm:git:git@github.com:saoj/mentacontainer.git</url>
+		<developerConnection>scm:git:git@github.com:saoj/mentacontainer.git</developerConnection>
+    </scm>
   <distributionManagement>
     <repository>
       <id>sonatype-nexus-staging</id>
@@ -38,8 +38,6 @@
   <properties>
     <build.final.name>mentacontainer</build.final.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <svn.tags>svn://soliveirajr.com/mentacontainer/tags</svn.tags>
-    <svn.url>svn://soliveirajr.com/mentacontainer/trunk</svn.url>
   </properties>
   <dependencies>
     <dependency>
@@ -192,8 +190,7 @@
       <plugin>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
-          <tagBase>svn://soliveirajr.com/mentacontainer/tags</tagBase>
-          <connectionUrl>scm:svn:svn://soliveirajr.com/mentacontainer/trunk</connectionUrl>
+          <connectionUrl>scm:git:git@github.com:saoj/mentacontainer.git</connectionUrl>
           <mavenExecutorId>forked-path</mavenExecutorId>
         </configuration>
       </plugin>
