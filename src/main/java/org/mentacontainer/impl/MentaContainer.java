@@ -22,6 +22,7 @@ import org.mentacontainer.util.InjectionUtils.Provider;
  * 
  * @author sergio.oliveira.jr@gmail.com
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class MentaContainer implements Container {
 
 	private Map<String, Factory> factoriesByName = new Hashtable<String, Factory>();
@@ -364,8 +365,6 @@ public class MentaContainer implements Container {
 	private final void checkInterceptable(Factory f, Object value) {
 		
 		if (f instanceof Interceptor) {
-			
-			Interceptor i = (Interceptor) f;
 			
 			((Interceptor) f).onCreated(value);
 		}

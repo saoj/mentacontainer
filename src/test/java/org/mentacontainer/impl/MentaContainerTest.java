@@ -453,6 +453,7 @@ public class MentaContainerTest {
 	
 	private static class SomeFactory implements Factory, Interceptor<SomeObject> {
 		
+		@SuppressWarnings("unchecked")
 		@Override
 		public <T> T getInstance() {
 			

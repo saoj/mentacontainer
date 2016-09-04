@@ -289,7 +289,8 @@ class ClassFactory implements ConfigurableFactory {
 	        return null;
 	    }
 	    
-	    @Override
+	    @SuppressWarnings("unchecked")
+		@Override
 	    public <T> T getInstance()  {
 	    	
 	        Object obj = null;

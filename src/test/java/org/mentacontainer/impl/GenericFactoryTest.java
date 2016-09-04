@@ -27,6 +27,7 @@ public class GenericFactoryTest {
 		Container c = new MentaContainer();
 		
 		// giveMeSomething => method that will be called to return object
+		@SuppressWarnings("rawtypes")
 		Factory generic = new GenericFactory(factory, "giveMeSomething");
 		
 		c.ioc("myFactory", generic);
