@@ -53,7 +53,6 @@ public class GenericFactory<E> implements Factory, Interceptor<E> {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getInstance()  {
 		

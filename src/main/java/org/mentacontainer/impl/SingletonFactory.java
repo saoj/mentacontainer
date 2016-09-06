@@ -16,7 +16,6 @@ public class SingletonFactory implements Factory {
 		this.type = instance.getClass();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getInstance()  {
 		
