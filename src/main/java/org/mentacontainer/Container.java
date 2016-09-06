@@ -64,6 +64,15 @@ public interface Container {
 	public ConfigurableFactory ioc(Object key, Class<?extends Object> klass);
 	
 	/**
+	 * Same as {@link #ioc(Object, Class)} passing the class in both arguments.
+	 * 
+	 * @param klass
+	 * @return The factory created as a ConfigurableFactory. (Fluent API)
+	 * @see Scope
+	 */
+	public ConfigurableFactory ioc(Class<?extends Object> klass);
+	
+	/**
 	 * Set up a factory for the given key. The scope assumed is NONE.
 	 * 
 	 * @param key The key representing the bean to return. The name of the bean in the container.

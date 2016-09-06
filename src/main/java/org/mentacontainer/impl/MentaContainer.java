@@ -408,6 +408,12 @@ public class MentaContainer implements Container {
 	}
 	
 	@Override
+	public ConfigurableFactory ioc(Class<?> klass) {
+		
+		return ioc(klass, klass);
+	}
+	
+	@Override
 	public ConfigurableFactory ioc(Object key, Class<?> klass, Scope scope) {
 		
 		ConfigurableFactory cc = new ClassFactory(this, klass);
