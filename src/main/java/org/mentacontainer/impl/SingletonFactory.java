@@ -28,4 +28,8 @@ public class SingletonFactory implements Factory {
 		
 		return type;
 	}
+	
+	public static Factory singleton(Object instance) {
+		return new SingletonFactory(instance);
+	}
 }
