@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>me.soliveirajr</groupId>
 	<artifactId>menta-container</artifactId>
-	<version>1.2.2-SNAPSHOT</version>
+	<version>1.2.2</version>
 	<name>MentaContainer</name>
 	<description>A IOC container as simple and pragmatic as it can get with programmatic configuration through a Fluent API.</description>
 	<url>http://maven.apache.org</url>
