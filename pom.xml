@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>oss-parent</artifactId>
@@ -8,7 +7,7 @@
 	</parent>
 	<groupId>me.soliveirajr</groupId>
 	<artifactId>menta-container</artifactId>
-	<version>1.1.3-SNAPSHOT</version>
+	<version>1.2.1</version>
 	<name>MentaContainer</name>
 	<description>A IOC container as simple and pragmatic as it can get with programmatic configuration through a Fluent API.</description>
 	<url>http://maven.apache.org</url>
