@@ -87,9 +87,9 @@ public class CoreExamplesTest {
 		c.ioc("timeInMillis", Long.class).addInitValue(cal.getTimeInMillis());
 		c.ioc("myBirthdayMonth", Integer.class).addInitValue(0);
 		
-		c.ioc("myBirthday", Date.class).addConstructorDependency("timeInMillis").addPropertyDependency("month", "myBirthdayMonth").addPropertyValue("date", 20);
+		c.ioc("myBirthday2", Date.class).addConstructorDependency("timeInMillis").addPropertyDependency("month", "myBirthdayMonth").addPropertyValue("date", 20);
 		
-		myBirthday = c.get("myBirthday");
+		myBirthday = c.get("myBirthday2");
 		
 		Assert.assertTrue(myBirthday.toString().indexOf("Jan 20") > 0);
 		Assert.assertTrue(myBirthday.toString().indexOf("1976") > 0);

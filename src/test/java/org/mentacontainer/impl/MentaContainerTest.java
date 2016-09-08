@@ -139,30 +139,30 @@ public class MentaContainerTest {
 		// meaning a new instance is created on every
 		// request for the bean
 		
-		c.ioc("myString", String.class).addInitValue("saoj");
+		c.ioc("myString1", String.class).addInitValue("saoj");
 		
-		String s1 = c.get("myString");
-		String s2 = c.get("myString");
+		String s1 = c.get("myString1");
+		String s2 = c.get("myString1");
 		
 		Assert.assertTrue(s1 != s2);
 		
 		// then you can use SINGLETON
 		// always get the same instance no matter what
 		
-		c.ioc("myString", String.class, Scope.SINGLETON).addInitValue("saoj");
+		c.ioc("myString2", String.class, Scope.SINGLETON).addInitValue("saoj");
 		
-		s1 = c.get("myString");
-		s2 = c.get("myString");
+		s1 = c.get("myString2");
+		s2 = c.get("myString2");
 		
 		Assert.assertTrue(s1 == s2);
 		
 		// then you can use THREAD
 		// each thread will get a different instance
 		
-		c.ioc("myString", String.class, Scope.THREAD).addInitValue("saoj");
+		c.ioc("myString3", String.class, Scope.THREAD).addInitValue("saoj");
 		
-		s1 = c.get("myString");
-		s2 = c.get("myString");
+		s1 = c.get("myString3");
+		s2 = c.get("myString3");
 		
 		Assert.assertTrue(s1 == s2); // same thread
 	}
@@ -484,9 +484,9 @@ public class MentaContainerTest {
 		
 		Container c = new MentaContainer();
 		
-		c.ioc("o", new SomeFactory(), Scope.SINGLETON);
+		c.ioc("o1", new SomeFactory(), Scope.SINGLETON);
 		
-		SomeObject o = c.get("o");
+		SomeObject o = c.get("o1");
 		
 		Assert.assertTrue(o.isCreated());
 		
@@ -494,9 +494,9 @@ public class MentaContainerTest {
 		
 		Assert.assertEquals(true, o.isDestroyed());
 		
-		c.ioc("o", new SomeFactory(), Scope.THREAD);
+		c.ioc("o2", new SomeFactory(), Scope.THREAD);
 		
-		o = c.get("o");
+		o = c.get("o2");
 		
 		Assert.assertTrue(o.isCreated());
 		
@@ -508,27 +508,27 @@ public class MentaContainerTest {
 		
 		Assert.assertEquals(true, o.isDestroyed());
 		
-		c.ioc("o", new SomeFactory(), Scope.NONE);
+		c.ioc("o3", new SomeFactory(), Scope.NONE);
 		
-		o = c.get("o");
-		
-		Assert.assertTrue(o.isCreated());
-		
-		o = c.clear("o");
-		
-		Assert.assertNull(o);
-		
-		c.ioc("o", new SomeFactory(), Scope.THREAD);
-		
-		o = c.clear("o");
-		
-		Assert.assertNull(o);
-		
-		o = c.get("o");
+		o = c.get("o3");
 		
 		Assert.assertTrue(o.isCreated());
 		
-		o = c.clear("o");
+		o = c.clear("o3");
+		
+		Assert.assertNull(o);
+		
+		c.ioc("o4", new SomeFactory(), Scope.THREAD);
+		
+		o = c.clear("o4");
+		
+		Assert.assertNull(o);
+		
+		o = c.get("o4");
+		
+		Assert.assertTrue(o.isCreated());
+		
+		o = c.clear("o4");
 		
 		Assert.assertEquals(true, o.isDestroyed());
 	}
