@@ -500,9 +500,16 @@ public class InjectionUtils {
 			}
 		}
 
-		if (value == null
-		        || (type.isAssignableFrom(value.getClass()) || checkPrimitives(type, value.getClass()) || (tryToConvert && ((isBlank(value) && (value = shouldConvertToNull(value,
-		                type)) == null) || (value = tryToConvert(value, type)) != null)))) {
+		if ( 
+			 value == null
+			 || (
+					 type.isAssignableFrom(value.getClass()) || checkPrimitives(type, value.getClass()) || (
+							 tryToConvert && (
+									 (isBlank(value) && (value = shouldConvertToNull(value, type)) == null) || (value = tryToConvert(value, type)) != null
+									 )
+				)
+			)
+		) {
 
 			try {
 
