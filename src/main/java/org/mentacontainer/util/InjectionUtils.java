@@ -363,6 +363,20 @@ public class InjectionUtils {
 		}
 		return obj.toString();
 	}
+	
+	public static String getTargetPropertyName(Object obj) {
+		if (obj instanceof Class<?>) {
+			Class<?> k = (Class<?>) obj;
+			String s = k.getSimpleName();
+			StringBuilder sb = new StringBuilder(s.length());
+			sb.append(s.substring(0, 1).toLowerCase());
+			if (s.length() > 1) {
+				sb.append(s.substring(1));
+			}
+			return sb.toString();
+		}
+		return obj.toString();
+	}
 
 	public static Method findMethodToGet(Class<?> target, String name) {
 
