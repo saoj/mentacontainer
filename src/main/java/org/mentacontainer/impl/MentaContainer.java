@@ -1,6 +1,7 @@
 package org.mentacontainer.impl;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -206,7 +207,21 @@ public class MentaContainer implements Container {
 		
 		String keyString = InjectionUtils.getKeyName(key);
 
-		if (!factoriesByName.containsKey(keyString)) return null;
+		if (!factoriesByName.containsKey(keyString)) {
+			
+			// new feature since 1.2.4: If it is a class, try to instatiate it
+			
+			if (key instanceof Class) {
+				
+				Class klass = (Class) key;
+				
+				if (!klass.isInterface() && !Modifier.isAbstract(klass.getModifiers())) {
+					return construct(klass);
+				}
+			}
+			
+			return null;
+		}
 
 		Factory c = factoriesByName.get(keyString);
 		
@@ -375,6 +390,10 @@ public class MentaContainer implements Container {
 		
 		String keyString = InjectionUtils.getKeyName(key);
 		
+		if (factoriesByName.containsKey(keyString)) {
+			throw new IllegalStateException("Cannot add key to container twice: " + keyString);
+		}
+		
 		factoriesByName.put(keyString, factory);
 		
 		singletonsCache.remove(keyString); // just in case we are overriding a previous singleton bean...
@@ -430,11 +449,7 @@ public class MentaContainer implements Container {
 		
 		String s = InjectionUtils.getKeyName(sourceFromContainer);
 		
-		// ATTENTION: targetProperty needs to be adjusted when sourceFromContainer is a class
-		
-		String targetProperty = InjectionUtils.getTargetPropertyName(sourceFromContainer);
-		
-		autowireBySetter(targetProperty, s);
+		autowireBySetter(s, s);
 		
 		autowireByConstructor(s);
 	}
@@ -479,7 +494,11 @@ public class MentaContainer implements Container {
 		
 		ClassFactory f = new ClassFactory(this, klass, forConstructMethod);
 		
-		return (T) f.getInstance();
+		T t = f.getInstance();
+		
+		inject(t);
+		
+		return t;
 	}
 
 	@Override

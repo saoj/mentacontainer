@@ -27,6 +27,8 @@ public interface Container {
 	 * 
 	 * The instance will be fully initialized (through constructor and/or setters) and fully wired (all dependencies will be resolved).
 	 * 
+	 * If no bean was defined in this container for the key and the key passed is a Class object, the container will try to instantiate and wire using the construct method.
+	 * 
 	 * @param key The key representing the factory to use. The name of the bean in the container.
 	 * @return The fully initialized and wired bean.
 	 */
@@ -122,7 +124,7 @@ public interface Container {
 	
 	/**
 	 * Construct an instance using beans from the container. A constructor will be chosen that has arguments that can be found 
-	 * inside the container.
+	 * inside the container. Note that this method will also call inject to wire the newly instantiated bean.
 	 * 
 	 * @param klass The class that should be instantiated.
 	 * @return An instantiated bean.

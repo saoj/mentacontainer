@@ -359,14 +359,6 @@ public class InjectionUtils {
 	public static String getKeyName(Object obj) {
 		if (obj instanceof Class<?>) {
 			Class<?> k = (Class<?>) obj;
-			return k.getName();
-		}
-		return obj.toString();
-	}
-	
-	public static String getTargetPropertyName(Object obj) {
-		if (obj instanceof Class<?>) {
-			Class<?> k = (Class<?>) obj;
 			String s = k.getSimpleName();
 			StringBuilder sb = new StringBuilder(s.length());
 			sb.append(s.substring(0, 1).toLowerCase());
@@ -377,7 +369,7 @@ public class InjectionUtils {
 		}
 		return obj.toString();
 	}
-
+	
 	public static Method findMethodToGet(Class<?> target, String name) {
 
 		StringBuffer sb = new StringBuffer(128);
