@@ -8,6 +8,20 @@ import org.mentacontainer.Container;
 public class AutoWiringClassTest {
 
 	@Test
+	public void testInject() {
+		
+		Container c = new MentaContainer();
+		c.ioc(FakeSession.class, FakeSession.class)
+			.addInitValue("fake session");
+		c.autowire(FakeSession.class, "session");
+		
+		AnotherFakeDAO dao = new AnotherFakeDAO();
+		// here the method setSession must be call (not setFakeBeanSession)
+		c.inject(dao);
+		assertNotNull(dao.getSession());
+	}
+	
+	@Test
 	public void testAutoWire() {
 		
 		Container c = new MentaContainer();
