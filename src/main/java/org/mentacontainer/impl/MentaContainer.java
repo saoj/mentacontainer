@@ -430,11 +430,7 @@ public class MentaContainer implements Container {
 		
 		String s = InjectionUtils.getKeyName(sourceFromContainer);
 		
-		// ATTENTION: targetProperty needs to be adjusted when sourceFromContainer is a class
-		
-		String targetProperty = InjectionUtils.getTargetPropertyName(sourceFromContainer);
-		
-		autowireBySetter(targetProperty, s);
+		autowireBySetter(s, s);
 		
 		autowireByConstructor(s);
 	}
