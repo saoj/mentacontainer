@@ -375,6 +375,10 @@ public class MentaContainer implements Container {
 		
 		String keyString = InjectionUtils.getKeyName(key);
 		
+		if (factoriesByName.containsKey(keyString)) {
+			throw new IllegalStateException("Cannot add key to container twice: " + keyString);
+		}
+		
 		factoriesByName.put(keyString, factory);
 		
 		singletonsCache.remove(keyString); // just in case we are overriding a previous singleton bean...
