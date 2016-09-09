@@ -417,7 +417,7 @@ public class MentaContainer implements Container {
 	}
 	
 	@Override
-	public ConfigurableFactory ioc(Object key, Class<?> klass) {
+	public <T> ConfigurableFactory<T> ioc(Object key, Class<?> klass) {
 		
 		ConfigurableFactory cc = new ClassFactory(this, klass);
 		
@@ -427,7 +427,7 @@ public class MentaContainer implements Container {
 	}
 	
 	@Override
-	public ConfigurableFactory ioc(Object key, Class<?> klass, Scope scope) {
+	public <T> ConfigurableFactory<T> ioc(Object key, Class<?> klass, Scope scope) {
 		
 		ConfigurableFactory cc = new ClassFactory(this, klass);
 		
@@ -486,7 +486,7 @@ public class MentaContainer implements Container {
 	@Override
 	public <T> T construct(Class<?> klass) {
 		
-		ClassFactory f = new ClassFactory(this, klass, forConstructMethod);
+		ClassFactory<T> f = new ClassFactory(this, klass, forConstructMethod);
 		
 		T t = f.getInstance();
 		

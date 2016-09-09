@@ -32,9 +32,9 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory c1 = new ClassFactory(container, User.class).addInitValue("saoj");
+		Factory<User> c1 = new ClassFactory<User>(container, User.class).addInitValue("saoj");
 		
-		Factory c2 = new ClassFactory(container, User.class).addPropertyValue("username", "soliveira");
+		Factory<User> c2 = new ClassFactory<User>(container, User.class).addPropertyValue("username", "soliveira");
 		
 		User u1 = c1.getInstance();
 		
@@ -67,7 +67,7 @@ public class ClassFactoryTest {
 		
 		c.ioc("myString", String.class).addInitValue("hello");
 	
-		Factory c1 = new ClassFactory(c, TestObj1.class).addConstructorDependency("myString").addInitValue(20).addInitValue(30000L)
+		Factory<TestObj1> c1 = new ClassFactory<TestObj1>(c, TestObj1.class).addConstructorDependency("myString").addInitValue(20).addInitValue(30000L)
 				.addInitValue(new User("saoj"));
 		
 		TestObj1 o = c1.getInstance();
@@ -96,7 +96,7 @@ public class ClassFactoryTest {
 		
 		c.ioc("myString", String.class).addInitValue("hello");
 	
-		Factory c1 = new ClassFactory(c, TestObj1_1.class).addPropertyDependency("s", "myString").addPropertyValue("i", 30);
+		Factory<TestObj1_1> c1 = new ClassFactory<TestObj1_1>(c, TestObj1_1.class).addPropertyDependency("s", "myString").addPropertyValue("i", 30);
 		
 		TestObj1_1 o = c1.getInstance();
 		
@@ -120,7 +120,7 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj2.class).addPropertyValue("integer", 20);
+		Factory<TestObj2> f = new ClassFactory<TestObj2>(container, TestObj2.class).addPropertyValue("integer", 20);
 		
 		TestObj2 o = f.getInstance();
 		
@@ -132,7 +132,7 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj2.class).addPropertyValue("integer", new Integer(20));
+		Factory<TestObj2> f = new ClassFactory<TestObj2>(container, TestObj2.class).addPropertyValue("integer", new Integer(20));
 		
 		TestObj2 o = f.getInstance();
 		
@@ -155,7 +155,7 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj2_1.class).addPropertyValue("integer", 20);
+		Factory<TestObj2_1> f = new ClassFactory<TestObj2_1>(container, TestObj2_1.class).addPropertyValue("integer", 20);
 		
 		TestObj2_1 o = f.getInstance();
 		
@@ -167,7 +167,7 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj2_1.class).addPropertyValue("integer", new Integer(20));
+		Factory<TestObj2_1> f = new ClassFactory<TestObj2_1>(container, TestObj2_1.class).addPropertyValue("integer", new Integer(20));
 		
 		TestObj2_1 o = f.getInstance();
 		
@@ -189,7 +189,7 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj3.class).addInitValue(20);
+		Factory<TestObj3> f = new ClassFactory<TestObj3>(container, TestObj3.class).addInitValue(20);
 		
 		TestObj3 o = f.getInstance();
 		
@@ -210,7 +210,7 @@ public class ClassFactoryTest {
 				
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj3_1.class).addInitValue(20);
+		Factory<TestObj3_1> f = new ClassFactory<TestObj3_1>(container, TestObj3_1.class).addInitValue(20);
 		
 		TestObj3_1 o = f.getInstance();
 		
@@ -233,7 +233,7 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj3_2.class).addInitValue(20).addInitPrimitive(30L);
+		Factory<TestObj3_2> f = new ClassFactory<TestObj3_2>(container, TestObj3_2.class).addInitValue(20).addInitPrimitive(30L);
 		
 		TestObj3_2 o = f.getInstance();
 		
@@ -261,7 +261,7 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj4.class).addInitPrimitive(20).addInitValue("hello").addInitValue(20L).addInitPrimitive(20L);
+		Factory<TestObj4> f = new ClassFactory<TestObj4>(container, TestObj4.class).addInitPrimitive(20).addInitValue("hello").addInitValue(20L).addInitPrimitive(20L);
 		
 		TestObj4 o = f.getInstance();
 		
@@ -281,7 +281,7 @@ public class ClassFactoryTest {
 		
 		MentaContainer container = new MentaContainer();
 		
-		Factory f = new ClassFactory(container, TestObj22.class);
+		Factory<TestObj22> f = new ClassFactory<TestObj22>(container, TestObj22.class);
 		
 		TestObj22 o = f.getInstance();
 		

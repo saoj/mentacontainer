@@ -13,7 +13,7 @@ public class WrapperFactoryTest {
 		
 		String s = new String("saoj");
 		
-		Factory ic = new SingletonFactory(s);
+		Factory<Object> ic = new SingletonFactory<Object>(s);
 		
 		Container c = new MentaContainer();
 		

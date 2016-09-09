@@ -6,7 +6,7 @@ import org.mentacontainer.Factory;
 import org.mentacontainer.Interceptor;
 import org.mentacontainer.util.FindMethod;
 
-public class GenericFactory<E> implements Factory, Interceptor<E> {
+public class GenericFactory<E> implements Factory<E>, Interceptor<E> {
 	
 	private final Object factory;
 	
@@ -55,11 +55,11 @@ public class GenericFactory<E> implements Factory, Interceptor<E> {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getInstance()  {
+	public E getInstance()  {
 		
 		try {
 			
-			return (T) method.invoke(factory, (Object[]) null);
+			return (E) method.invoke(factory, (Object[]) null);
 			
 		} catch(Exception e) {
 			
@@ -68,8 +68,9 @@ public class GenericFactory<E> implements Factory, Interceptor<E> {
 		} 
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public Class<?> getType() {
-		return type;
+	public Class<? extends E> getType() {
+		return (Class<? extends E>) type;
 	}
 }

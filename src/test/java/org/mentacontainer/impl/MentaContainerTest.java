@@ -451,17 +451,16 @@ public class MentaContainerTest {
 		public boolean isCreated() { return created; }
 	}
 	
-	private static class SomeFactory implements Factory, Interceptor<SomeObject> {
+	private static class SomeFactory implements Factory<SomeObject>, Interceptor<SomeObject> {
 		
-		@SuppressWarnings("unchecked")
 		@Override
-		public <T> T getInstance() {
+		public SomeObject getInstance() {
 			
-			return (T) new SomeObject();
+			return new SomeObject();
 		}
 		
 		@Override
-		public Class<?> getType() {
+		public Class<? extends SomeObject> getType() {
 			
 			return SomeObject.class;
 		}

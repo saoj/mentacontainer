@@ -20,7 +20,7 @@ import org.mentacontainer.util.InjectionUtils;
  * 
  * @author sergio.oliveira.jr@gmail.com
  */
-class ClassFactory implements ConfigurableFactory {
+class ClassFactory<T> implements ConfigurableFactory<T> {
 	
 		private final MentaContainer container;
 	
@@ -57,7 +57,7 @@ class ClassFactory implements ConfigurableFactory {
 
 	    
 	    @Override
-	    public ConfigurableFactory addPropertyValue(String name, Object value) {
+	    public ConfigurableFactory<T> addPropertyValue(String name, Object value) {
 	    	
 	        if (props == null) {
 	        	
@@ -72,7 +72,7 @@ class ClassFactory implements ConfigurableFactory {
 	    }
 	    
 	    @Override
-	    public ConfigurableFactory useZeroArgumentConstructor() {
+	    public ConfigurableFactory<T> useZeroArgumentConstructor() {
 	    	
 	    	this.useZeroArgumentsConstructor = true;
 	    	
@@ -80,7 +80,7 @@ class ClassFactory implements ConfigurableFactory {
 	    }
 	    
 	    @Override
-	    public ConfigurableFactory addPropertyDependency(String property, Object key) {
+	    public ConfigurableFactory<T> addPropertyDependency(String property, Object key) {
 	    	
 	    	String k = InjectionUtils.getKeyName(key);
 	    	
@@ -88,20 +88,20 @@ class ClassFactory implements ConfigurableFactory {
 	    }
 	    
 	    @Override
-	    public ConfigurableFactory addPropertyDependency(String property) {
+	    public ConfigurableFactory<T> addPropertyDependency(String property) {
 	    	
 	    	return addPropertyDependency(property, property);
 	    }
 	    
 	    @Override
-	    public ConfigurableFactory addConstructorDependency(Object key) {
+	    public ConfigurableFactory<T> addConstructorDependency(Object key) {
 	    	
 	    	String k = InjectionUtils.getKeyName(key);
 	    	
 	    	return addInitValue(new DependencyKey(k), container.getType(k));
 	    }
 	    
-	    private ConfigurableFactory addInitValue(Object value, Class<?> type) {
+	    private ConfigurableFactory<T> addInitValue(Object value, Class<?> type) {
 	    	
 	        if (initValues == null) {
 	        	
@@ -118,13 +118,13 @@ class ClassFactory implements ConfigurableFactory {
 	    }
 	    
 	    @Override
-	    public ConfigurableFactory addInitValue(Object value) {
+	    public ConfigurableFactory<T> addInitValue(Object value) {
 	    	
 	        return addInitValue(value, value.getClass());
 	    }
 	    
 	    @Override
-	    public ConfigurableFactory addInitPrimitive(Object value) {
+	    public ConfigurableFactory<T> addInitPrimitive(Object value) {
 	    	
 	    	Class<?> primitive = getPrimitiveFrom(value);
 	    	
@@ -289,9 +289,9 @@ class ClassFactory implements ConfigurableFactory {
 	        return null;
 	    }
 	    
-	    @SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked")
 		@Override
-	    public <T> T getInstance()  {
+	    public T getInstance()  {
 	    	
 	        Object obj = null;
 	        
@@ -499,8 +499,9 @@ class ClassFactory implements ConfigurableFactory {
 	    	private String getKey() { return key; }
 	    }
 	    
-	    @Override
-	    public Class<?> getType() {
-	    	return klass;
+	    @SuppressWarnings("unchecked")
+		@Override
+	    public Class<? extends T> getType() {
+	    	return (Class<? extends T>) klass;
 	    }
 	}

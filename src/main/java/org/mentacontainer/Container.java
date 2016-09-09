@@ -52,7 +52,7 @@ public interface Container {
 	 * @return The factory created as a ConfigurableFactory. (Fluent API)
 	 * @see Scope
 	 */
-	public ConfigurableFactory ioc(Object key, Class<?> klass, Scope scope);
+	public <T> ConfigurableFactory<T> ioc(Object key, Class<?> klass, Scope scope);
 	
 	/**
 	 * Same as {@link #ioc(String, Class, Scope)} except that it assumes
@@ -63,7 +63,7 @@ public interface Container {
 	 * @return The factory created as a ConfigurableFactory. (Fluent API)
 	 * @see Scope
 	 */
-	public ConfigurableFactory ioc(Object key, Class<?extends Object> klass);
+	public <T> ConfigurableFactory<T> ioc(Object key, Class<?extends Object> klass);
 	
 	/**
 	 * Set up a factory for the given key. The scope assumed is NONE.
@@ -73,7 +73,7 @@ public interface Container {
 	 * @return The factory passed as a parameter. (Fluent API)
 	 * @see Factory
 	 */
-	public Factory ioc(Object key, Factory factory);
+	public <T> Factory<T> ioc(Object key, Factory<T> factory);
 	
 	/**
 	 * Set up a factory for the given key in the given scope.
@@ -85,7 +85,7 @@ public interface Container {
 	 * @see Factory
 	 * @see Scope
 	 */
-	public Factory ioc(Object key, Factory factory, Scope scope);
+	public <T> Factory<T> ioc(Object key, Factory<T> factory, Scope scope);
 	
 	/**
 	 * Configure a bean dependency to be auto-wired by the container.
