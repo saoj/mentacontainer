@@ -4,33 +4,31 @@ import org.mentacontainer.Factory;
 
 public class SingletonFactory<T> implements Factory<T> {
 	
-	private final Object instance;
+	private final T instance;
 	
-	private final Class<?> type;
+	private final Class<? extends T> type;
 	
-	
-	public SingletonFactory(Object instance) {
+	@SuppressWarnings("unchecked")
+	public SingletonFactory(T instance) {
 
 		this.instance = instance;
 		
-		this.type = instance.getClass();
+		this.type = (Class<T>) instance.getClass();
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public T getInstance()  {
 		
-		return (T) instance;
+		return instance;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public Class<? extends T> getType() {
 		
-		return (Class<? extends T>) type;
+		return type;
 	}
 	
-	public static <T> Factory<T> singleton(Object instance) {
+	public static <T> Factory<T> singleton(T instance) {
 		return new SingletonFactory<T>(instance);
 	}
 }
