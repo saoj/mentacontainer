@@ -494,6 +494,20 @@ public class MentaContainer implements Container {
 		
 		return t;
 	}
+	
+	private String getAutowireKey(String key) {
+		
+		for(SetterDependency sd: setterDependencies) {
+			
+			String targetProperty = sd.getTarget();
+			
+			if (key.equals(targetProperty)) {
+				return sd.getSource();
+			}
+		}
+		
+		return key;
+	}
 
 	@Override
 	public void inject(Object bean) {
@@ -503,11 +517,15 @@ public class MentaContainer implements Container {
 			@Override
 			public Object get(String key) {
 				
+				key = getAutowireKey(key);
+				
 				return MentaContainer.this.get(key);
 			}
 			
 			@Override
 			public boolean hasValue(String key) {
+				
+				key = getAutowireKey(key);
 				
 				return MentaContainer.this.check(key);
 			}
