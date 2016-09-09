@@ -12,7 +12,7 @@ package org.mentacontainer;
  * @author sergio.oliveira.jr@gmail.com
  * @see Interceptor
  */
-public interface ConfigurableFactory extends Factory {
+public interface ConfigurableFactory<T> extends Factory<T> {
 	
 	/**
 	 * Add a constructor parameter to be used when the bean is instantiated. It can be called more than once to
@@ -21,7 +21,7 @@ public interface ConfigurableFactory extends Factory {
 	 * @param value A parameter value to be used by a constructor.
 	 * @return The factory itself. (Fluent API)
 	 */
-	public ConfigurableFactory addInitValue(Object value);
+	public ConfigurableFactory<T> addInitValue(Object value);
 	
 	/**
 	 * Add a constructor parameter that is a primitive to be used when the bean is instantiated. It can be called more than once to
@@ -35,7 +35,7 @@ public interface ConfigurableFactory extends Factory {
 	 * @param value A parameter value to be used by a constructor. Must be a primitive that will be autoboxed.
 	 * @return The factory itself. (Fluent API)
 	 */
-	public ConfigurableFactory addInitPrimitive(Object value);
+	public ConfigurableFactory<T> addInitPrimitive(Object value);
 	
 	
 	/**
@@ -45,7 +45,7 @@ public interface ConfigurableFactory extends Factory {
 	 * @param key The key used to get an instance from the container
 	 * @return The factory itself. (Fluent API)
 	 */
-	public ConfigurableFactory addConstructorDependency(Object key);
+	public ConfigurableFactory<T> addConstructorDependency(Object key);
 	
 	/**
 	 * In case you want to force the use of a zero argument constructor and avoid any ambiguity when choosing the constructor to use.
@@ -55,7 +55,7 @@ public interface ConfigurableFactory extends Factory {
 	 * 
 	 * @return The factory itself. (Fluent API)
 	 */
-	public ConfigurableFactory useZeroArgumentConstructor();
+	public ConfigurableFactory<T> useZeroArgumentConstructor();
 	
 	/**
 	 * Add a property to be injected through a setter when the factory instantiates an object.
@@ -64,7 +64,7 @@ public interface ConfigurableFactory extends Factory {
 	 * @param value The property value.
 	 * @return The factory itself. (Fluent API)
 	 */
-	public ConfigurableFactory addPropertyValue(String name, Object value);
+	public ConfigurableFactory<T> addPropertyValue(String name, Object value);
 	
 	/**
 	 * Add a setter property that is a dependency, in other words, its value will be obtained from the container.
@@ -74,7 +74,7 @@ public interface ConfigurableFactory extends Factory {
 	 * @param property The dependency name which is equal to the property name.
 	 * @return The factory itself. (Fluent API)
 	 */
-	public ConfigurableFactory addPropertyDependency(String property);
+	public ConfigurableFactory<T> addPropertyDependency(String property);
 	
 	/**
 	 * Add a setter property that is a dependency, in other words, its value will be obtained from the container.
@@ -85,5 +85,5 @@ public interface ConfigurableFactory extends Factory {
 	 * @param key The dependency name, in other words, the key used to get a bean from the container.
 	 * @return The factory itself. (Fluent API)
 	 */
-	public ConfigurableFactory addPropertyDependency(String property, Object key);
+	public ConfigurableFactory<T> addPropertyDependency(String property, Object key);
 }

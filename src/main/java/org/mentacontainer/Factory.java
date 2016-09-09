@@ -5,14 +5,14 @@ package org.mentacontainer;
  * 
  * @author sergio.oliveira.jr@gmail.com
  */
-public interface Factory {
+public interface Factory<T> {
 	
 	/**
 	 * Returns an instance. Creates one if necessary.
 	 * 
 	 * @return an instance
 	 */
-	public <T> T getInstance();
+	public T getInstance();
 	
 	
 	/**
@@ -20,5 +20,5 @@ public interface Factory {
 	 * 
 	 * @return the type of objects returned by this factory.
 	 */
-	public Class<?> getType();
+	public Class<? extends T> getType();
 }

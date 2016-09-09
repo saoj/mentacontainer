@@ -2,7 +2,7 @@ package org.mentacontainer.impl;
 
 import org.mentacontainer.Factory;
 
-public class SingletonFactory implements Factory {
+public class SingletonFactory<T> implements Factory<T> {
 	
 	private final Object instance;
 	
@@ -18,18 +18,19 @@ public class SingletonFactory implements Factory {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getInstance()  {
+	public T getInstance()  {
 		
 		return (T) instance;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public Class<?> getType() {
+	public Class<? extends T> getType() {
 		
-		return type;
+		return (Class<? extends T>) type;
 	}
 	
-	public static Factory singleton(Object instance) {
-		return new SingletonFactory(instance);
+	public static <T> Factory<T> singleton(Object instance) {
+		return new SingletonFactory<T>(instance);
 	}
 }
