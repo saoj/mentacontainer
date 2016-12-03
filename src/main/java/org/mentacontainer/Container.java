@@ -43,7 +43,7 @@ public interface Container {
 	public Class<?> getType(Object key);
 	
 	/**
-	 * Configure a bean to be returned with the given implementation when {@link #get(String)} is called.
+	 * Configure a bean to be returned with the given implementation when {@link #get(Object)} is called.
 	 * An internal factory will be used.
 	 * 
 	 * @param key The key representing the bean to return. The name of the bean in the container.
@@ -55,7 +55,7 @@ public interface Container {
 	public <T> ConfigurableFactory<T> ioc(Object key, Class<?> klass, Scope scope);
 	
 	/**
-	 * Same as {@link #ioc(String, Class, Scope)} except that it assumes
+	 * Same as {@link #ioc(Object, Class, Scope)} except that it assumes
 	 * there is no scope (Scope.NONE).
 	 * 
 	 * @param key
