@@ -2,6 +2,6 @@
 Simple IoC, DI and Auto-Wiring
 
 ### Examples
-Coming Soon! For now please refer to http://mentacontainer.soliveirajr.com
+Refer to https://github.com/saoj/mentacontainer/blob/master/src/test/java/org/mentacontainer/example/CoreExamplesTest.java
 
 
